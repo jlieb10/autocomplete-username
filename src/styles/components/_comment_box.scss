@@ -1,0 +1,28 @@
+.comment-box {
+  flex: 1;
+  align-self: center;
+  width: 50%;
+  margin: auto;
+
+  &__textarea,
+  &__submit-button {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #424242;
+    border: 1px solid #424242;
+  }
+
+  &__textarea {
+    width: 100%;
+    margin: auto;
+  }
+
+  &__submit-button {
+    display: block;
+    padding: 6px 12px;
+    font-size: 12px;
+    text-align: center;
+    float: right;
+    text-transform: capitalize;
+  }
+}

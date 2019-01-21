@@ -9,7 +9,8 @@ class CommentBox extends Component {
       userTriggered: false,
       userTriggeredAt: null,
       userQuery: '',
-      value: ''
+      value: '',
+      matchedUsers: []
     };
 
     this.userdata = userdata;
@@ -24,7 +25,8 @@ class CommentBox extends Component {
     this.setState({
       userTriggered: false,
       userTriggeredAt: null,
-      userQuery: ''
+      userQuery: '',
+      matchedUsers: []
     });
   }
 
@@ -73,26 +75,48 @@ class CommentBox extends Component {
   }
 
   findUsers(query, users) {
-    window.data = users;
-    const rgx = new RegExp(query, 'g');
+    const rgx = query.length > 0 ? new RegExp(query, 'gi') : this.resetState;
     const matchedUsers = [];
 
     for (let i = 0; i < users.length; i++) {
       if (users[i].username.match(rgx)) {
         matchedUsers.push(users[i]);
-        console.log(matchedUsers);
       }
     }
+
+    return this.setState({
+      matchedUsers: matchedUsers
+    });
   }
 
   render() {
+    const matchedUsers = this.state.matchedUsers.map(user => (
+      <li key={user.userName} className="comment-box__matched-user">
+        <div className="comment-box__matched-user-image">
+          <img src={user.avatar_url} alt={user.username} />
+        </div>
+        <div className="comment-box__matched-username">{user.username}</div>
+        <div className="comment-box__matched-fullname">{user.name}</div>
+      </li>
+    ));
+
     return (
-      <textarea
-        className="CommentBox"
-        onKeyUp={this.handleUsernameTrigger}
-        value={this.state.value}
-        onChange={this.handleTyping}
-      />
+      <form className="comment-box">
+        <textarea
+          className="comment-box__textarea"
+          onKeyUp={this.handleUsernameTrigger}
+          value={this.state.value}
+          onChange={this.handleTyping}
+          autoFocus={true}
+          rows={5}
+        />
+        <ul className="comment-box__matched-users">{matchedUsers}</ul>
+        <input
+          value="comment"
+          type="submit"
+          className="comment-box__submit-button"
+        />
+      </form>
     );
   }
 }
