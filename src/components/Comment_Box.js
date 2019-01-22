@@ -48,18 +48,24 @@ class CommentBox extends Component {
   }
 
   handleTyping(e) {
+    // Update state while typing so input can be
+    // scanned for username lookup trigger
     this.setState({
       value: e.target.value
     });
   }
 
   handleEscape(e) {
+    // Reset matchedUsers list when user hits escape
     if (e.which === 27) {
       this.resetState();
     }
   }
 
   findUsers(query) {
+    // Search usernames list for match against user query
+    // Match can be at any part of a user name
+    // eg: for username 'jliebeman,' the query 'lieb' would match
     const queryRgx = new RegExp(query, 'gi');
     const matchedUsers = [];
 
