@@ -1,15 +1,14 @@
-# Comment component featuring autocompleting username using `@` (like on Github)
-## Work In Progress...
+# (Work in Progress) Comment component featuring autocompleting username using `@` (like on Github)
 
 ## TBDone/TBDebugged
 ### Functionality:
--Add `onClick` functionality to usercards so the text is updated in the comment box
--Debug search feature, it is currently searching one letter less than has been typed
--Consolidate `onChange` and `onKeyUp` event listeners on `<CommentBox />` (probably related to above)
+- Add `onClick` functionality to usercards so the text is updated in the comment box
+- Debug search feature, it is currently searching one letter less than has been typed
+- Consolidate `onChange` and `onKeyUp` event listeners on `<CommentBox />` (probably related to above)
 
 ### Aesthetics:
--Add styles for below 720px (current max width);
--Figure out best position of `<UsersList />`
+- Add styles for below 720px (current max width);
+- Figure out best position of `<UsersList />`
 
 ---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
