@@ -22,6 +22,7 @@ class CommentBox extends Component {
     this.resetState = this.resetState.bind(this);
     this.handleTyping = this.handleTyping.bind(this);
     this.findUsers = this.findUsers.bind(this);
+    this.handleEscape = this.handleEscape.bind(this);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -50,6 +51,12 @@ class CommentBox extends Component {
     this.setState({
       value: e.target.value
     });
+  }
+
+  handleEscape(e) {
+    if (e.which === 27) {
+      this.resetState();
+    }
   }
 
   findUsers(query) {
@@ -82,6 +89,7 @@ class CommentBox extends Component {
           className="comment-box__textarea"
           value={this.state.value}
           onChange={this.handleTyping}
+          onKeyDown={this.handleEscape}
           autoFocus={true}
           rows={5}
         />
