@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+
+// import subcomponent(s)
+import UsersList from './Users_List';
+
+// import data
 import userdata from '../data/UserData';
 
 class CommentBox extends Component {
@@ -13,7 +18,10 @@ class CommentBox extends Component {
       matchedUsers: []
     };
 
+    // Scope data to component
     this.userdata = userdata;
+
+    // Scope functions to component
     this.resetState = this.resetState.bind(this);
     this.handleTyping = this.handleTyping.bind(this);
     this.handleUsernameTrigger = this.handleUsernameTrigger.bind(this);
@@ -84,21 +92,19 @@ class CommentBox extends Component {
       }
     }
 
-    return this.setState({
+    this.setState({
       matchedUsers: matchedUsers
     });
   }
 
   render() {
-    const matchedUsers = this.state.matchedUsers.map(user => (
-      <li key={user.userName} className="comment-box__matched-user">
-        <div className="comment-box__matched-user-image">
-          <img src={user.avatar_url} alt={user.username} />
-        </div>
-        <div className="comment-box__matched-username">{user.username}</div>
-        <div className="comment-box__matched-fullname">{user.name}</div>
-      </li>
-    ));
+    // pass relevant/matched data to list component to compose the list
+    const matchedUsers =
+      this.state.matchedUsers.length > 0 ? (
+        <UsersList users={this.state.matchedUsers} />
+      ) : (
+        ''
+      );
 
     return (
       <form className="comment-box">
@@ -110,7 +116,7 @@ class CommentBox extends Component {
           autoFocus={true}
           rows={5}
         />
-        <ul className="comment-box__matched-users">{matchedUsers}</ul>
+        {matchedUsers}
         <input
           value="comment"
           type="submit"

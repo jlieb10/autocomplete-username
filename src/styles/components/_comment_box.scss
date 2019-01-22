@@ -2,7 +2,9 @@
   flex: 1;
   align-self: center;
   width: 50%;
+  min-width: 400px;
   margin: auto;
+  position: relative;
 
   &__textarea,
   &__submit-button {

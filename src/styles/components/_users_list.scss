@@ -1,0 +1,22 @@
+.users-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 1);
+  width: 300px;
+
+  &__header,
+  &__dialog {
+    margin: 6px auto;
+    display: block;
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: column nowrap;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+  }
+}
